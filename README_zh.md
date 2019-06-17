@@ -1,6 +1,8 @@
 
 # react-native-promptmsg
 
+[![npm version](https://badge.fury.io/js/react-native-promptmsg.svg)](https://badge.fury.io/js/react-native-promptmsg)
+
 > 一个主要在Android提供的类似IOS上原生提示窗样式的提示窗。其在IOS和Android上均能达到预期的显示效果。
 
 > 组件主要依赖 `react-native-root-siblings`
@@ -9,7 +11,7 @@
 
 以下两种方式
 
-~~`$ npm install --save react-native-promptmsg`~~
+`$ npm install --save react-native-promptmsg`
 
 2019-06-17：有一些问题导致npm安装暂不好使。
 
@@ -59,4 +61,6 @@ AlertMsg.alert(
   ]
 );
 ```
-  
+---
+
+**MIT Licensed**

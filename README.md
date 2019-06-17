@@ -1,11 +1,13 @@
 
 # react-native-promptmsg
 
+[![npm version](https://badge.fury.io/js/react-native-promptmsg.svg)](https://badge.fury.io/js/react-native-promptmsg)
+
 [中文文档](./README_zh.md)
 
 ### Install
 
-~~`$ npm install --save react-native-promptmsg `~~
+`$ npm install --save react-native-promptmsg `
 
 or
 
@@ -33,4 +35,7 @@ AlertMsg.alert(
   ]
 );
 ```
-  
+
+---
+
+**MIT Licensed**
