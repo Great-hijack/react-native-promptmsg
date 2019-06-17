@@ -56,7 +56,7 @@ export default class AlertStyleOfIOS extends React.Component {
                 <Animated.View style={{width: deviceWidth * 0.7, transform: [{scale: this.state.scaleValue}]}}>
                     <View style={[styles.bgWhite, styles.alertBg]}>
                         <Text style={styles.titleText}
-                              allowFontScaling={false}>{this.props.message.title ? '提示' : this.props.message.title}</Text>
+                              allowFontScaling={false}>{this.props.message.title ? this.props.message.title : '提示'}</Text>
                         <Text style={styles.remarkText} allowFontScaling={false}>{this.props.message.content}</Text>
                     </View>
                     {
