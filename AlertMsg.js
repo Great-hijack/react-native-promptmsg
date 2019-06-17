@@ -19,12 +19,11 @@ export default class AlertMsg extends React.Component {
      */
     static alert = (message, options = ['确定'], actions = []) => {
         if (_lastAlertRS) {
-            console.log(`AlertIOS2.alert : the _lastAlertRS was not destroyed`);
-            AlertIOS2.close(_lastAlertRS);
+            AlertMsg.close(_lastAlertRS);
         }
         _lastAlertRS = new RootSiblings(
             <AlertStyleOfIOS
-                refClose={() => AlertIOS2.close(_lastAlertRS)}
+                refClose={() => AlertMsg.close(_lastAlertRS)}
                 message={message}
                 options={options}
                 actions={actions}
@@ -41,7 +40,7 @@ export default class AlertMsg extends React.Component {
         if (alertRS instanceof RootSiblings) {
             alertRS.destroy();
         } else {
-            console.log(`AlertIOS2.close : the type of alertRS is not RootSiblings`);
+            console.log(`AlertMsg.close : the type of alertRS is not RootSiblings`);
         }
     };
 
