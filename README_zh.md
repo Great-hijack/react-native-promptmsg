@@ -7,10 +7,15 @@
 
 ### 安装
 
+以下两种方式
+
 ~~`$ npm install --save react-native-promptmsg`~~
 
 2019-06-17：有一些问题导致npm安装暂不好使。
 
+或者
+
+`$ npm install --save https://github.com/RysisLiang/react-native-promptmsg.git`
 
 ### 方法和属性
 
@@ -27,7 +32,7 @@
 3. btnNames: 按钮的名称。其中提示框的显示样式就是根据名称的个数来判断的。
     1. 1个：默认是‘确认’，只会显示一个按钮；
     2. 2个：横向显示连个按钮；
-    3. 多个：竖排显示多个按钮，最后一个自动添加取消按钮。
+    3. 多个：竖排显示多个按钮，最后一个自动添加特殊样式。
 
 4. btnActions: btnNames 和 btnActions 根据 index 一一对应。不传的时候，按钮默认效果都是取消。
 

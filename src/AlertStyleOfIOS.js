@@ -63,7 +63,7 @@ export default class AlertStyleOfIOS extends React.Component {
                         this.props.options.length > 2 &&
                         <ListView
                             scrollEnabled={false}
-                            dataSource={ds.cloneWithRows(this.props.options)}
+                            dataSource={ds.cloneWithRows(this.props.options.slice(0, btnMaxIndex))}
                             renderRow={(contactOption, sectionID, index) => this._renderBtnItem(contactOption, sectionID, index)}
                             renderFooter={() =>
                                 <View style={styles.btnListLastView}>

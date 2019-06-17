@@ -5,7 +5,11 @@
 
 ### Install
 
-~~`$ npm install react-native-promptmsg --save`~~
+~~`$ npm install --save react-native-promptmsg `~~
+
+or
+
+`$ npm install --save https://github.com/RysisLiang/react-native-promptmsg.git`
 
 TODO
 
