@@ -17,7 +17,7 @@ const _midBorderWidth = 0.2;
 const _borderRadius = 15;
 
 /**
- * 在安卓平台上提供与ios原生类似的提示框
+ * component ios-style prompt dialog
  */
 export default class AlertStyleOfIOS extends React.Component {
 
@@ -28,8 +28,8 @@ export default class AlertStyleOfIOS extends React.Component {
 
     constructor(props) {
         super(props);
-        this._animating = false; // 动画是否显示完成
-        this._closeFuc = this.props.refClose; // 关闭的fuc
+        this._animating = false; // animating lock
+        this._closeFuc = this.props.refClose; // is AlertMsg.close function
 
         this.state = {
             opacityValue: new Animated.Value(0),
@@ -56,7 +56,7 @@ export default class AlertStyleOfIOS extends React.Component {
                 <Animated.View style={{width: deviceWidth * 0.7, transform: [{scale: this.state.scaleValue}]}}>
                     <View style={[styles.bgWhite, styles.alertBg]}>
                         <Text style={styles.titleText}
-                              allowFontScaling={false}>{this.props.message.title ? this.props.message.title : '提示'}</Text>
+                              allowFontScaling={false}>{this.props.message.title ? this.props.message.title : 'OK'}</Text>
                         <Text style={styles.remarkText} allowFontScaling={false}>{this.props.message.content}</Text>
                     </View>
                     {
@@ -112,7 +112,7 @@ export default class AlertStyleOfIOS extends React.Component {
     }
 
     /**
-     * 渲染竖向按钮列表
+     * Render vertical list of button
      * @param contactOption
      * @param sectionID
      * @param btnIndex
@@ -137,7 +137,7 @@ export default class AlertStyleOfIOS extends React.Component {
     }
 
     /**
-     * 点击事件
+     * click event
      * @param btnIndex 按钮id
      * @private
      */
@@ -154,7 +154,7 @@ export default class AlertStyleOfIOS extends React.Component {
     };
 
     /**
-     * 显示提示框
+     * show alert
      * @private
      */
     _show = () => {
@@ -168,7 +168,7 @@ export default class AlertStyleOfIOS extends React.Component {
     };
 
     /**
-     * 关闭并销毁提示窗
+     * hide alert and destroy RootSiblings
      * @private
      */
     _hide = () => {
@@ -181,10 +181,10 @@ export default class AlertStyleOfIOS extends React.Component {
     };
 
     /**
-     * 提示框的动画效果
-     * @param _toValue 动画的值
-     * @param _delay 动画延迟时间
-     * @param successFuc 成功后的执行函数
+     * Animation effect
+     * @param _toValue
+     * @param _delay
+     * @param successFuc
      * @private
      */
     _animation = (_toValue, _delay = 0, successFuc) => {

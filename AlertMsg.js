@@ -6,22 +6,23 @@ import AlertStyleOfIOS from "./src/AlertStyleOfIOS";
 let _lastAlertRS = null;
 
 /**
- * 在安卓平台上提供与ios原生类似的提示框
+ * Alert dialog like ios-style of core class
  */
 export default class AlertMsg extends React.Component {
 
     /**
-     * 弹出弹出窗口
-     * @param message m.title:标题; m.content:内容
-     * @param options （array）选项名称
-     * @param actions （array）选项动作
+     * alert dialog
+     * @param message m.title; m.content
+     * @param options （array）botton names
+     * @param actions （array）botton actions
      * @returns {RootSiblings}
      */
-    static alert = (message, options = ['确定'], actions = []) => {
+    static alert = (message, options = ['OK'], actions = []) => {
         if (_lastAlertRS) {
             AlertMsg.close(_lastAlertRS);
         }
         _lastAlertRS = new RootSiblings(
+            // It may be modified to be replaceable later...
             <AlertStyleOfIOS
                 refClose={() => AlertMsg.close(_lastAlertRS)}
                 message={message}
@@ -33,14 +34,14 @@ export default class AlertMsg extends React.Component {
     };
 
     /**
-     * 关闭弹出窗口
-     * @param alertRS
+     * close dialog
+     * @param obj AlertMsg.alert`s result
      */
-    static close = (alertRS) => {
-        if (alertRS instanceof RootSiblings) {
-            alertRS.destroy();
+    static close = (obj) => {
+        if (obj instanceof RootSiblings) {
+            obj.destroy();
         } else {
-            console.log(`AlertMsg.close : the type of alertRS is not RootSiblings`);
+            console.log(`AlertMsg.close() : the type of obj is not RootSiblings`);
         }
     };
 

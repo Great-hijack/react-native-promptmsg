@@ -7,16 +7,19 @@
 
 ### Install
 
-`$ npm install --save react-native-promptmsg `
-
+```bash
+$ npm install --save react-native-promptmsg
+```
 or
+```bash
+$ npm install --save https://github.com/RysisLiang/react-native-promptmsg.git
+```
 
-`$ npm install --save https://github.com/RysisLiang/react-native-promptmsg.git`
+### method and properties
 
-TODO
+##### AlertMsg.alert(data:Object, btnNames:Array, btnActions:Array): RootSiblings
 
-
-
+TODO ...
 
 ## Usage
 ```javascript

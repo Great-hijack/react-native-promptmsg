@@ -3,21 +3,21 @@
 
 [![npm version](https://badge.fury.io/js/react-native-promptmsg.svg)](https://badge.fury.io/js/react-native-promptmsg)
 
-> 一个主要在Android提供的类似IOS上原生提示窗样式的提示窗。其在IOS和Android上均能达到预期的显示效果。
+> 使用 react-native 实现的类似IOS上原生的提示对话框样式。
 
-> 组件主要依赖 `react-native-root-siblings`
+> 依赖 `react-native-root-siblings`
 
 ### 安装
 
 以下两种方式
 
-`$ npm install --save react-native-promptmsg`
-
-2019-06-17：有一些问题导致npm安装暂不好使。
-
+```bash
+$ npm install --save react-native-promptmsg
+```
 或者
-
-`$ npm install --save https://github.com/RysisLiang/react-native-promptmsg.git`
+```bash
+$ npm install --save https://github.com/RysisLiang/react-native-promptmsg.git
+```
 
 ### 方法和属性
 
@@ -27,14 +27,14 @@
 
 属性
 
-1. data.title: 对应的是提示框的标题
+1. data.title: 提示框的标题
 
 2. data.content: 备注内容（可选）
 
-3. btnNames: 按钮的名称。其中提示框的显示样式就是根据名称的个数来判断的。
-    1. 1个：默认是‘确认’，只会显示一个按钮；
-    2. 2个：横向显示连个按钮；
-    3. 多个：竖排显示多个按钮，最后一个自动添加特殊样式。
+3. btnNames: 按钮的名称列表。按钮个数不同样式不同。
+    1. 1个：横向显示一个按钮；
+    2. 2个：横向显示两个按钮；
+    3. 3个以上：竖排显示多个按钮，最后一个自动添加特殊样式。
 
 4. btnActions: btnNames 和 btnActions 根据 index 一一对应。不传的时候，按钮默认效果都是取消。
 
@@ -50,8 +50,8 @@ import AlertMsg from 'react-native-promptmsg';
 // 在你需要的位置
 AlertMsg.alert(
   {
-      title: '提示1',
-      content: 'AlertIOS2 SHOW'
+      title: '提示',
+      content: '备注'
   },
   ['确定', '取消'], 
   [
