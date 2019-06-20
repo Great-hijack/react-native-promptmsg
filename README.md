@@ -1,9 +1,15 @@
 
 # react-native-promptmsg
 
+[中文文档](./README_zh.md)
+
 [![npm version](https://badge.fury.io/js/react-native-promptmsg.svg)](https://badge.fury.io/js/react-native-promptmsg)
 
-[中文文档](./README_zh.md)
+> This is an ios-style prompt dialog by react-native and support both Android and iOS.
+
+> Already integrated dependency `react-native-root-siblings`
+
+![](media/alert_demo_1.gif)
 
 ### Install
 

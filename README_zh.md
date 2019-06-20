@@ -3,9 +3,11 @@
 
 [![npm version](https://badge.fury.io/js/react-native-promptmsg.svg)](https://badge.fury.io/js/react-native-promptmsg)
 
-> 使用 react-native 实现的类似IOS上原生的提示对话框样式。
+> 使用 react-native 实现的类似iOS上原生的提示对话框样式，支持安卓和iOS。
 
 > 依赖 `react-native-root-siblings`
+
+![](media/alert_demo_1.gif)
 
 ### 安装
 
