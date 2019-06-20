@@ -1,6 +1,6 @@
 {
   "name": "react-native-promptmsg",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "alert message for react-native",
   "main": "./index.js",
   "scripts": {
