@@ -9,6 +9,7 @@ import {
     View
 } from 'react-native';
 import {Global} from "../Global";
+import AlertMsg from "../AlertMsg";
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 const deviceHeight = Global.height;
@@ -18,6 +19,13 @@ const _borderRadius = 15;
 
 /**
  * component ios-style prompt dialog
+ *
+ * ## ----  Discard  ----
+ * ## Please update the code in time.
+ * ## It is not recommended to continue using.
+ * ## The AlertStyleOfIOS file will be removed in a future update.
+ *
+ * @Discard in v0.2.0+
  */
 export default class AlertStyleOfIOS extends React.Component {
 
@@ -29,7 +37,11 @@ export default class AlertStyleOfIOS extends React.Component {
     constructor(props) {
         super(props);
         this._animating = false; // animating lock
-        this._closeFuc = this.props.refClose; // is AlertMsg.close function
+        /**
+         * Is AlertMsg.close function.
+         * In v0.2.0+ not recommended
+         */
+        this._closeFuc = this.props.refClose;
 
         this.state = {
             opacityValue: new Animated.Value(0),
@@ -50,61 +62,69 @@ export default class AlertStyleOfIOS extends React.Component {
     };
 
     render() {
-        let btnMaxIndex = this.props.options.length - 1;
+        const actSize = this.props.actions.length;
+        const btnMaxIndex = actSize - 1;
         return (
             <Animated.View style={[styles.otherBg, {opacity: this.state.opacityValue}]} pointerEvents={'auto'}>
                 <Animated.View style={{width: deviceWidth * 0.7, transform: [{scale: this.state.scaleValue}]}}>
                     <View style={[styles.bgWhite, styles.alertBg]}>
                         <Text style={styles.titleText}
                               allowFontScaling={false}>{this.props.message.title ? this.props.message.title : 'OK'}</Text>
-                        <Text style={styles.remarkText} allowFontScaling={false}>{this.props.message.content}</Text>
+                        {
+                            this.props.message.content &&
+                            <Text style={styles.remarkText} allowFontScaling={false}>{this.props.message.content}</Text>
+                        }
                     </View>
                     {
-                        this.props.options.length > 2 &&
-                        <ListView
-                            scrollEnabled={false}
-                            dataSource={ds.cloneWithRows(this.props.options.slice(0, btnMaxIndex))}
-                            renderRow={(contactOption, sectionID, index) => this._renderBtnItem(contactOption, sectionID, index)}
-                            renderFooter={() =>
-                                <View style={styles.btnListLastView}>
-                                    <TouchableOpacity activeOpacity={0.7}
-                                                      onPress={() => this._click(btnMaxIndex)}
-                                                      style={styles.btnListLastTouch}>
-                                        <View style={styles.btnListLastContentView}>
-                                            <Text style={styles.btnListLastContentText}>{this.props.options[btnMaxIndex]}</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                </View>}
-                        />
+                        actSize > 2 && (
+                            <ListView
+                                scrollEnabled={false}
+                                dataSource={ds.cloneWithRows(this.props.actions.slice(0, btnMaxIndex))}
+                                renderRow={(item, sectionID, index) => this._renderBtnItem(item, sectionID, index)}
+                                renderFooter={() =>
+                                    <View style={styles.btnListLastView}>
+                                        <TouchableOpacity activeOpacity={0.7}
+                                                          onPress={() => this._click(btnMaxIndex)}
+                                                          style={styles.btnListLastTouch}>
+                                            <View style={styles.btnListLastContentView}>
+                                                <Text style={styles.btnListLastContentText}>{this._actionsItem(btnMaxIndex).text}</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </View>
+                                }
+                            />
+                        )
                     }
                     {
-                        this.props.options.length === 2 &&
-                        <View style={[styles.btnBorderCommon, styles.btnBorderTop]}>
-                            <TouchableOpacity style={[styles.btnCommon, styles.leftBtnView]}
-                                              activeOpacity={0.8}
-                                              onPress={() => this._click(0)}
-                            >
-                                <Text style={styles.btnText} allowFontScaling={false}>{this.props.options[0]}</Text>
-                            </TouchableOpacity>
-                            <View style={[styles.btnBorderCommon, {width: _midBorderWidth}]}/>
-                            <TouchableOpacity style={[styles.btnCommon, styles.rightBtnView]}
-                                              activeOpacity={0.8}
-                                              onPress={() => this._click(1)}
-                            >
-                                <Text style={styles.btnText} allowFontScaling={false}>{this.props.options[1]}</Text>
-                            </TouchableOpacity>
-                        </View>
+                        actSize === 2 && (
+                            <View style={[styles.btnBorderCommon, styles.btnBorderTop]}>
+                                <TouchableOpacity style={[styles.btnCommon, styles.leftBtnView]}
+                                                  activeOpacity={0.8}
+                                                  onPress={() => this._click(0)}
+                                >
+                                    <Text style={styles.btnText} allowFontScaling={false}>{this._actionsItem(0).text}</Text>
+                                </TouchableOpacity>
+                                <View style={[styles.btnBorderCommon, {width: _midBorderWidth}]}/>
+                                <TouchableOpacity style={[styles.btnCommon, styles.rightBtnView]}
+                                                  activeOpacity={0.8}
+                                                  onPress={() => this._click(1)}
+                                >
+                                    <Text style={styles.btnText} allowFontScaling={false}>{this._actionsItem(1).text}</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )
                     }
                     {
-                        this.props.options.length === 1 &&
-                        <View style={[styles.btnBorderCommon, {borderTopWidth: 1}]}>
-                            <TouchableOpacity style={[styles.btnCommon, styles.oneBtnView]}
-                                              activeOpacity={0.8}
-                                              onPress={() => this._click(0)}
-                            >
-                                <Text style={styles.btnText} allowFontScaling={false}>{this.props.options[0]}</Text>
-                            </TouchableOpacity>
-                        </View>
+                        actSize <= 1 && (
+                            <View style={[styles.btnBorderCommon, {borderTopWidth: 1}]}>
+                                <TouchableOpacity style={[styles.btnCommon, styles.oneBtnView]}
+                                                  activeOpacity={0.8}
+                                                  onPress={() => this._click(0)}
+                                >
+                                    <Text style={styles.btnText} allowFontScaling={false}>{actSize === 1 ? this._actionsItem(0).text : 'OK'}</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )
                     }
                 </Animated.View>
             </Animated.View>
@@ -113,22 +133,22 @@ export default class AlertStyleOfIOS extends React.Component {
 
     /**
      * Render vertical list of button
-     * @param contactOption
-     * @param sectionID
+     * @param item
+     * @param section
      * @param btnIndex
      * @returns {boolean|*}
      * @private
      */
-    _renderBtnItem(contactOption, sectionID, btnIndex) {
+    _renderBtnItem(item, section, btnIndex) {
         return (
-            btnIndex !== this.props.options.length - 1 && (
+            btnIndex !== this.props.actions.length - 1 && (
                 <View style={{backgroundColor: '#dcdcdc'}}>
                     <View style={{height: 0.5, backgroundColor: '#ebebeb'}}/>
                     <TouchableOpacity style={[styles.bgWhite]}
                                       activeOpacity={0.7}
                                       onPress={() => this._click(btnIndex)}>
                         <View style={styles.btnListItemTextView}>
-                            <Text style={styles.btnListItemText}>{contactOption}</Text>
+                            <Text style={styles.btnListItemText}>{item.text}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -136,16 +156,20 @@ export default class AlertStyleOfIOS extends React.Component {
         )
     }
 
+    _actionsItem = (index) => this.props.actions[index];
+
     /**
      * click event
-     * @param btnIndex 按钮id
+     * @param btnIndex index of buttons
      * @private
      */
     _click = (btnIndex) => {
         try {
-            this.props.actions[btnIndex] ?
-                this.props.actions[btnIndex]() :
-                null;
+            const item = this._actionsItem(btnIndex);
+            if (item) {
+                typeof item.press === 'function' && item.press.call(this);
+                // typeof item.press === 'function' && item.press();
+            }
         } catch (e) {
             console.warn(`_click: error:${e}`);
         } finally {
@@ -175,7 +199,11 @@ export default class AlertStyleOfIOS extends React.Component {
         if (!this._animating) {
             this._animating = true;
             this._animation(0, 0, (finished) => {
-                this._closeFuc();
+                /**
+                 * In v0.2.0+ not recommended
+                 */
+                // this._closeFuc();
+                AlertMsg.close();
             });
         }
     };

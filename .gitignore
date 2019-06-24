@@ -48,6 +48,7 @@ buck-out/
 
 # example
 #
+example/
 example/alertView/.idea
 example/alertView/node_modules/
 example/alertView/package-lock.json
