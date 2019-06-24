@@ -58,11 +58,9 @@ export default class AlertMsg extends React.Component {
         if (obj instanceof RootSiblings) {
             AlertMsg.destroy(obj);
         } else if (_lastAlertRS instanceof RootSiblings) {
-            _alertDomRef._hide({
-                after: () => AlertMsg.destroy(_lastAlertRS)
-            });
+            _alertDomRef._hide();
         } else {
-            console.log(`AlertMsg.close() : the type of obj is not RootSiblings`);
+            console.warn('AlertMsg.close() : The type of obj is not RootSiblings');
         }
     };
 
@@ -76,11 +74,14 @@ export default class AlertMsg extends React.Component {
                 obj.destroy();
             } else if (_lastAlertRS instanceof RootSiblings) {
                 _lastAlertRS.destroy();
-                _lastAlertRS = null;
-                _alertDomRef = null;
+            } else {
+                throw 'The type of object or _lastAlertRS is not RootSiblings';
             }
         } catch (e) {
-            console.log(`AlertMsg.destroy() error : ${e}`);
+            console.error(`AlertMsg.destroy() error : ${e}`);
+        } finally {
+            _lastAlertRS = null;
+            _alertDomRef = null;
         }
     };
 
