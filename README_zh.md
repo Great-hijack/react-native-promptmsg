@@ -90,7 +90,7 @@ AlertMsg.alert(
 
 通过 renderItem 参数来覆盖默认的组件，但是点击的动作需要跟随组件一同传入，所以也无需传递 press 参数。
 
-```
+```javascript
 import AlertMsg from 'react-native-promptmsg';
 
 AlertMsg.alert(
@@ -141,7 +141,7 @@ AlertMsg.alert(
 
 完全的自定义提示对话框
 
-```
+```javascript
 import AlertMsg from 'react-native-promptmsg';
 
 AlertMsg.alertByRender(() =>

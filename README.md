@@ -72,7 +72,7 @@ AlertMsg.alert(
 
 Clicked actions need to be passed along with the component.
 
-```
+```javascript
 import AlertMsg from 'react-native-promptmsg';
 
 AlertMsg.alert(
@@ -121,7 +121,7 @@ AlertMsg.alert(
 
 ##### custom overall dialog of style
 
-```
+```javascript
 import AlertMsg from 'react-native-promptmsg';
 
 AlertMsg.alertByRender(() =>
