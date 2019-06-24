@@ -23,26 +23,134 @@ $ npm install --save https://github.com/RysisLiang/react-native-promptmsg.git
 
 ### method and properties
 
-##### AlertMsg.alert(data:Object, btnNames:Array, btnActions:Array): RootSiblings
+##### AlertMsg.alert(data:Object, buttons:Array): RootSiblings
 
-TODO ...
+properties
+
+- data
+    - title:（required）
+    - content:（optional）
+- buttons（optional）
+    - text
+    - press
+    - renderItem: custom a single button
+
+
+##### AlertMsg.alertByRender(func:Function): RootSiblings
+
+- func:（optional）
+
+##### AlertMsg.close(rs:RootSiblings): void
+
+- rs:（optional）
 
 ## Usage
+
+##### default dialog of ios-style
+
 ```javascript
 import AlertMsg from 'react-native-promptmsg';
 
 AlertMsg.alert(
-  {
-      title: 'Title',
-      content: 'Alert SHOW'
-  },
-  ['OK', 'Cancel'], 
-  [
-      () => {
-        // to do somethings ...
-      }
-  ]
+    {
+        title: 'Alert 1',
+        content: 'content 111111'
+    },
+    [
+        {
+            text: 'OK',
+            press: () => Alert.alert("ok success")
+        },
+        {
+            text: 'Cancel',
+        },
+    ],
 );
+```
+
+##### custom a single button
+
+Clicked actions need to be passed along with the component.
+
+```
+import AlertMsg from 'react-native-promptmsg';
+
+AlertMsg.alert(
+    {
+        title: 'Alert 2',
+        content: 'content 222222'
+    },
+    [
+        {
+            text: 'OK',
+            press: () => Alert.alert("ok success", 'abcdef')
+        },
+        {
+            text: 'Test1',
+            renderItem: () =>
+                <View style={{
+                    backgroundColor: '#b0dcd9',
+                    borderTopWidth: 0.5,
+                    borderTopColor: '#ebebeb'
+                }}>
+                    <TouchableOpacity activeOpacity={0.7}
+                                    style={{backgroundColor: '#9fffc1'}}
+                                    onPress={() => {
+                                        try {
+                                            // do somethings ...
+                                        } finally {
+                                            AlertMsg.close(); // must be close!
+                                        }
+                                    }}>
+                          <View style={{
+                              height: 104,
+                              justifyContent: 'center',
+                              alignItems: 'center'
+                          }}>
+                              <Text style={{fontSize: 16, color: 'red'}}>Custom button</Text>
+                          </View>
+                    </TouchableOpacity>
+                </View>
+        },
+        {
+            text: 'Cancel',
+        },
+    ],
+);
+```
+
+##### custom overall dialog of style
+
+```
+import AlertMsg from 'react-native-promptmsg';
+
+AlertMsg.alertByRender(() =>
+  <View style={{
+      width: 180,
+      height: 150,
+      backgroundColor: '#b0dcd9',
+  }}>
+      <TouchableOpacity activeOpacity={0.7}
+                        style={{backgroundColor: '#9fffc1'}}
+                        onPress={() => {
+                            try {
+                                // do somethings ...
+                            } finally {
+                                AlertMsg.close(); // must be close!
+                            }
+                        }}>
+          <View style={{
+              height: 150,
+              justifyContent: 'center',
+              alignItems: 'center'
+          }}>
+              <Text style={{fontSize: 16, color: 'red'}}>
+                  Custom dialog
+              </Text>
+          </View>
+      </TouchableOpacity>
+  </View>
+)
 ```
 
 ---

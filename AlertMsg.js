@@ -33,6 +33,24 @@ export default class AlertMsg extends React.Component {
     };
 
     /**
+     * alert dialog. use dialog of custom elements
+     * @param fun react-native element
+     * @returns {RootSiblings}
+     */
+    static alertByRender = (fun) => {
+        if (_lastAlertRS) {
+            AlertMsg.close(_lastAlertRS);
+        }
+        _lastAlertRS = new RootSiblings(
+            <AlertFrame
+                dialogItem={() => fun()}
+                ref={(eleRef) => _alertDomRef = eleRef}
+            />
+        );
+        return _lastAlertRS;
+    };
+
+    /**
      * close dialog
      * @param obj AlertMsg.alert`s result
      */
@@ -46,24 +64,6 @@ export default class AlertMsg extends React.Component {
         } else {
             console.log(`AlertMsg.close() : the type of obj is not RootSiblings`);
         }
-    };
-
-    /**
-     * alert dialog. use dialog of custom elements
-     * @param fun react-native element
-     * @returns {RootSiblings}
-     */
-    static alertByRender = (fun) => {
-        if (_lastAlertRS) {
-            AlertMsg.close(_lastAlertRS);
-        }
-        _lastAlertRS = new RootSiblings(
-            <AlertFrame
-                dialogItem={() => fun()} // In v0.2.0+ not recommended
-                ref={(eleRef) => _alertDomRef = eleRef}
-            />
-        );
-        return _lastAlertRS;
     };
 
     /**

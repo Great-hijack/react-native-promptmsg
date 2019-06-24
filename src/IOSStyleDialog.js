@@ -14,7 +14,7 @@ const _midBorderWidth = 0.2;
 const _borderRadius = 15;
 
 /**
- * component ios-style prompt dialog
+ * default ios-style prompt dialog
  */
 export default class IOSStyleDialog extends React.Component {
 
