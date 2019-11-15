@@ -4,6 +4,8 @@
 [中文文档](./README_zh.md)
 
 [![npm version](https://badge.fury.io/js/react-native-promptmsg.svg)](https://badge.fury.io/js/react-native-promptmsg)
+![npm](https://img.shields.io/npm/dm/react-native-promptmsg)
+![GitHub](https://img.shields.io/github/license/RysisLiang/react-native-promptmsg)
 
 > This is an ios-style prompt dialog by react-native and support both Android and iOS.
 

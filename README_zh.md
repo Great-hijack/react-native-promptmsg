@@ -2,6 +2,8 @@
 # react-native-promptmsg
 
 [![npm version](https://badge.fury.io/js/react-native-promptmsg.svg)](https://badge.fury.io/js/react-native-promptmsg)
+![npm](https://img.shields.io/npm/dm/react-native-promptmsg)
+![GitHub](https://img.shields.io/github/license/RysisLiang/react-native-promptmsg)
 
 > 使用 react-native 实现的类似iOS上原生的提示对话框样式，支持安卓和iOS。
 
